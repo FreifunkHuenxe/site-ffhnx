@@ -10,4 +10,4 @@ before_script:
 - ls -lsa
 
 script:
-- gluon_build_all.sh
+- sudo ./gluon_build_all.sh
