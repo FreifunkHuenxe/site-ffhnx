@@ -17,7 +17,7 @@ rm -rf $BUILD_HOME &>> $BUILD_LOG
 
 mkdir -p $BUILD_HOME
 echo BUILD_HOME: $BUILD_HOME
-cd $BUILD_HOME
+#cd $BUILD_HOME
 echo in build dir: $PWD
 # check out everything
 git clone https://github.com/freifunk-gluon/gluon.git gluon -b $GLUON_RELEASE
