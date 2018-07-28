@@ -1,11 +1,12 @@
 #!/bin/sh
 set -e
 BUILD_LOG=gluon-build.log
-BUILD_HOME=`pwd`/gluon-build
+BUILD_HOME=$(pwd)/gluon-build
 GLUON_RELEASE=v2016.2.7
 SITE_RELEASE=2016
 MY_GLUON_SITE=ffhnx
 SITE_DIR=site-$MY_GLUON_SITE
+ROOT_DIR=$(pwd)
 
 echo ok, go &> $BUILD_LOG
 
@@ -17,15 +18,15 @@ rm -rf $BUILD_HOME &>> $BUILD_LOG
 
 mkdir -p $BUILD_HOME
 echo BUILD_HOME: $BUILD_HOME
-#cd $BUILD_HOME
+cd $BUILD_HOME
 echo in build dir: $PWD
 # check out everything
 git clone https://github.com/freifunk-gluon/gluon.git gluon -b $GLUON_RELEASE
 git clone https://github.com/FreifunkHuenxe/site-ffhnx.git $SITE_DIR -b $SITE_RELEASE
 
 # copy some customizations:
-cp custom-build/mymodules $GL_FOLDER/modules &>> $BUILD_LOG
-cp custom-build/mysite.mk $SI_FOLDER/site.mk &>> $BUILD_LOG
+cp $ROOT_DIR/custom-build/mymodules $GL_FOLDER/modules &>> $BUILD_LOG
+cp $ROOT_DIR/custom-build/mysite.mk $SI_FOLDER/site.mk &>> $BUILD_LOG
 
 # build everything
 BRANCH=stable
