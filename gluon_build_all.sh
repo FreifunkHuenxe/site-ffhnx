@@ -42,6 +42,7 @@ echo "== Building $SI_FOLDER" &>> $BUILD_LOG
 BINDIR=$(cat $SI_FOLDER/site.conf |grep site_code|awk {'print $3'}|sed "s/'//g"|sed "s/,//g")
 GLUON_IMAGEDIR=$BUILD_HOME/images_$GLUON_RELEASE/$BINDIR
 echo "== calling make for $SITE" &>> $BUILD_LOG
+make update
 make GLUON_BRANCH=$BRANCH GLUON_SITEDIR=$SI_FOLDER GLUON_TARGET=ar71xx-generic V=s
 ## make GLUON_BRANCH=$BRANCH GLUON_SITEDIR=$SI_FOLDER GLUON_TARGET=ar71xx-nand
 ## make GLUON_BRANCH=$BRANCH GLUON_SITEDIR=$SI_FOLDER GLUON_TARGET=mpc85xx-generic
