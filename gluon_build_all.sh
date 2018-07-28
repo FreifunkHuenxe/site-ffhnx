@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 BUILD_LOG=gluon-build.log
-BUILD_HOME=~/gluon-build
+BUILD_HOME=$(pwd)/gluon-build
 GLUON_RELEASE=v2016.2.7
 SITE_RELEASE=2016
 MY_GLUON_SITE=ffhnx
