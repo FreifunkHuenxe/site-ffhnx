@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 BUILD_LOG=gluon-build.log
-BUILD_HOME=$(pwd)/gluon-build
+BUILD_HOME=`pwd`/gluon-build
 GLUON_RELEASE=v2016.2.7
 SITE_RELEASE=2016
 MY_GLUON_SITE=ffhnx
@@ -15,8 +15,9 @@ SI_FOLDER=$BUILD_HOME/$SITE_DIR
 #altes zeug weg:
 rm -rf $BUILD_HOME &>> $BUILD_LOG
 
-mkdir -p $BUILD_HOME &>> $BUILD_LOG
-cd $BUILD_HOME &>> $BUILD_LOG
+mkdir -p $BUILD_HOME
+echo BUILD_HOME: $BUILD_HOME
+cd $BUILD_HOME
 # check out everything
 git clone https://github.com/freifunk-gluon/gluon.git gluon -b $GLUON_RELEASE &>> $BUILD_LOG
 git clone https://github.com/FreifunkHuenxe/site-ffhnx.git $SITE_DIR -b $SITE_RELEASE &>> $BUILD_LOG
