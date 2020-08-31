@@ -31,9 +31,12 @@ GLUON_SITE_PACKAGES := \
 
 GLUON_LANGS ?= de en
 
-DEFAULT_GLUON_RELEASE := 0.8.4.3+stable+ffhnx
+DEFAULT_GLUON_RELEASE := v2020.2+stable+ffhnx
 
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 
 GLUON_PRIORITY ?= 0
+
+# Do not build images for deprecated devices
+GLUON_DEPRECATED ?= 0
