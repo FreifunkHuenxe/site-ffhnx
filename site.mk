@@ -18,11 +18,11 @@ GLUON_FEATURES := \
 	status-page \
 	web-advanced \
 	web-wizard \
-        web-private-wifi \
+    web-private-wifi \
 	advancedstats \
-        config-mode-statistics \
+    config-mode-statistics \
 	ssid-changer \
-        rfkill-disable
+    rfkill-disable
 
 
 ##	GLUON_SITE_PACKAGES
@@ -31,7 +31,9 @@ GLUON_FEATURES := \
 #		selection that would be enabled by default or due to the
 #		chosen feature flags
 
-GLUON_SITE_PACKAGES := iwinfo iptables
+GLUON_SITE_PACKAGES := \
+	iwinfo \
+	iptables
 
 
 ##	DEFAULT_GLUON_RELEASE
