@@ -1,42 +1,67 @@
-GLUON_SITE_PACKAGES := \
-	gluon-mesh-batman-adv-14 \
-        gluon-alfred \
-        gluon-respondd \
-        gluon-autoupdater \
-        gluon-setup-mode \
-        gluon-config-mode-core \
-        gluon-config-mode-autoupdater \
-        gluon-config-mode-hostname \
-        gluon-config-mode-geo-location \
-        gluon-config-mode-contact-info \
-        gluon-config-mode-tunneldigger \
-        gluon-ebtables-filter-multicast \
-        gluon-ebtables-filter-ra-dhcp \
-        gluon-luci-admin \
-        gluon-luci-autoupdater \
-        gluon-luci-portconfig \
-        gluon-luci-private-wifi \
-        gluon-luci-wifi-config \
-        gluon-luci-theme \
-        gluon-next-node \
-        gluon-mesh-vpn-tunneldigger \
-        gluon-radvd \
-        gluon-status-page \
-        gluon-migrate-vpn \
-        gluon-ssid-changer \
-        gluon-tunneldigger-watchdog \
-        iwinfo \
-        iptables \
-        haveged
+##	gluon site.mk makefile 
 
-GLUON_LANGS ?= de en
+##	GLUON_FEATURES
+#		Specify Gluon features/packages to enable;
+#		Gluon will automatically enable a set of packages
+#		depending on the combination of features listed
 
-DEFAULT_GLUON_RELEASE := v2020.2+stable+ffhnx
+GLUON_FEATURES := \
+	autoupdater \
+	ebtables-filter-multicast \
+	ebtables-filter-ra-dhcp \
+	ebtables-limit-arp \
+	ebtables-source-filter \
+	mesh-batman-adv-15 \
+	mesh-vpn-tunneldigger \
+	radvd \
+	respondd \
+	status-page \
+	web-advanced \
+	web-wizard \
+        web-private-wifi \
+	advancedstats \
+        config-mode-statistics \
+	ssid-changer \
+        rfkill-disable
 
-# Allow overriding the release number from the command line
+
+##	GLUON_SITE_PACKAGES
+#		Specify additional Gluon/OpenWrt packages to include here;
+#		A minus sign may be prepended to remove a packages from the
+#		selection that would be enabled by default or due to the
+#		chosen feature flags
+
+GLUON_SITE_PACKAGES := iwinfo iptables
+
+
+##	DEFAULT_GLUON_RELEASE
+#		version string to use for images
+#		gluon relies on
+#			opkg compare-versions "$1" '>>' "$2"
+#		to decide if a version is newer or not.
+
+DEFAULT_GLUON_RELEASE := v2020.2+exp+ffhnx
+
+# Variables set with ?= can be overwritten from the command line
+
+##	GLUON_RELEASE
+#		call make with custom GLUON_RELEASE flag, to use your own release version scheme.
+#		e.g.:
+#			$ make images GLUON_RELEASE=23.42+5
+#		would generate images named like this:
+#			gluon-ff%site_code%-23.42+5-%router_model%.bin
+
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 
+# Default priority for updates.
 GLUON_PRIORITY ?= 0
 
-# Do not build images for deprecated devices
-GLUON_DEPRECATED ?= 0
+# Region code required for some images; supported values: us eu
+GLUON_REGION ?= eu
+
+# Languages to include
+GLUON_LANGS ?= en de
+
+
+GLUON_DEPRECATED ?= upgrade
+GLUON_BRANCH ?= stable
